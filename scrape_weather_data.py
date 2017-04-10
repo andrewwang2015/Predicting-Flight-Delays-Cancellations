@@ -7,7 +7,7 @@ from urllib.request import urlopen
 
 # timestamps in UTC to request data for
 startts = datetime.datetime(2015, 1, 1)
-endts = datetime.datetime(2015, 12, 31)
+endts = datetime.datetime(2016, 1, 1)
 
 SERVICE = "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?"
 SERVICE += "data=all&tz=Etc/UTC&format=comma&latlon=yes&"
