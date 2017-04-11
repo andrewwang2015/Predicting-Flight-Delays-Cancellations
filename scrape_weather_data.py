@@ -4,10 +4,10 @@ Example script that scrapes data from the IEM ASOS download service
 import json
 import datetime
 from urllib.request import urlopen
-
+import pandas as pd
 # timestamps in UTC to request data for
 startts = datetime.datetime(2015, 1, 1)
-endts = datetime.datetime(2016, 1, 1)
+endts = datetime.datetime(2016, 1, 2)
 
 SERVICE = "https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?"
 SERVICE += "data=all&tz=Etc/UTC&format=comma&latlon=yes&"
@@ -18,8 +18,11 @@ SERVICE += endts.strftime('year2=%Y&month2=%m&day2=%d&')
 states = """AK AL AR AZ CA CO CT DE FL GA HI IA ID IL IN KS KY LA MA MD ME
  MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT
  WA WI WV WY"""
+
+airports = pd.read_csv('./airports.csv')
+airport_codes = airports['IATA_CODE'].tolist()
 # IEM quirk to have Iowa AWOS sites in its own labeled network
-networks = ['AWOS']
+networks = []#['AWOS']
 for state in states.split():
     networks.append("%s_ASOS" % (state,))
 
@@ -29,17 +32,18 @@ for network in networks:
            "geojson/network/%s.geojson") % (network,)
     init_data = urlopen(uri).read()
     data = init_data.decode('utf-8')
-    print (data[0])
     jdict = json.loads(data)
     for site in jdict['features']:
         faaid = site['properties']['sid']
-        sitename = site['properties']['sname']
-        uri = '%s&station=%s' % (SERVICE, faaid)
-        print ('Network: %s Downloading: %s [%s]' % (network, sitename, faaid))
-        init_data = urlopen(uri).read()
-        data = init_data.decode('utf-8')
-        outfn = '%s_%s_%s.txt' % (faaid, startts.strftime("%Y%m%d%H%M"),
-                                  endts.strftime("%Y%m%d%H%M"))
-        out = open(outfn, 'w')
-        out.write(data)
-        out.close()
+        temp_faaid = faaid[0:3]
+        if temp_faaid in airport_codes:
+            sitename = site['properties']['sname']
+            uri = '%s&station=%s' % (SERVICE, faaid)
+            print ('Network: %s Downloading: %s [%s]' % (network, sitename, faaid))
+            init_data = urlopen(uri).read()
+            data = init_data.decode('utf-8')
+            outfn = '%s_%s_%s.csv' % (faaid, startts.strftime("%Y%m%d%H%M"),
+                                      endts.strftime("%Y%m%d%H%M"))
+            out = open(outfn, 'w')
+            out.write(data)
+            out.close()
