@@ -17,7 +17,7 @@ SERVICE += endts.strftime('year2=%Y&month2=%m&day2=%d&')
 
 states = """AK AL AR AZ CA CO CT DE FL GA HI IA ID IL IN KS KY LA MA MD ME
  MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT
- WA WI WV WY"""
+ WA WI WV WY PR_ GU_ AS_ VI_"""
 
 airports = pd.read_csv('./airports.csv')
 airport_codes = airports['IATA_CODE'].tolist()
@@ -35,8 +35,10 @@ for network in networks:
     jdict = json.loads(data)
     for site in jdict['features']:
         faaid = site['properties']['sid']
-        temp_faaid = faaid[0:3]
-        if temp_faaid in airport_codes:
+        if faaid in airport_codes or faaid in ['PHTO', 'PHKO', 'PHLI', 'PHOG', 'TJPS', 'TJBQ', 'TJSJ', 'PGUM', 'NSTU', 'TIST', 'TISX', \
+            'PADK', 'PANC', 'PABR', 'PABE', 'PACV', 'PASC', 'PADL', 'PAFA', 'PAGS', 'PAJN', 'PAKT', 'PAKN', 'PADQ', \
+            'PAOT', 'PAOM', 'PAPG', 'PASI', 'PAYA', 'CRQ', 'SGJ', 'SAW', 'UNV']:
+            #if faaid == 'UNV':
             sitename = site['properties']['sname']
             uri = '%s&station=%s' % (SERVICE, faaid)
             print ('Network: %s Downloading: %s [%s]' % (network, sitename, faaid))
