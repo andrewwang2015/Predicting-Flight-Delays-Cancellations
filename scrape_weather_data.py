@@ -35,10 +35,10 @@ for network in networks:
     jdict = json.loads(data)
     for site in jdict['features']:
         faaid = site['properties']['sid']
-        if faaid in airport_codes or faaid in ['PHTO', 'PHKO', 'PHLI', 'PHOG', 'TJPS', 'TJBQ', 'TJSJ', 'PGUM', 'NSTU', 'TIST', 'TISX', \
+        '''if faaid in airport_codes or faaid in ['PHTO', 'PHKO', 'PHLI', 'PHOG', 'TJPS', 'TJBQ', 'TJSJ', 'PGUM', 'NSTU', 'TIST', 'TISX', \
             'PADK', 'PANC', 'PABR', 'PABE', 'PACV', 'PASC', 'PADL', 'PAFA', 'PAGS', 'PAJN', 'PAKT', 'PAKN', 'PADQ', \
-            'PAOT', 'PAOM', 'PAPG', 'PASI', 'PAYA', 'CRQ', 'SGJ', 'SAW', 'UNV']:
-            #if faaid == 'UNV':
+            'PAOT', 'PAOM', 'PAPG', 'PASI', 'PAYA', 'PAWG', 'CRQ', 'SGJ', 'SAW', 'UNV', 'NYL', 'GPI']:'''
+        if faaid == 'PAWG':
             sitename = site['properties']['sname']
             uri = '%s&station=%s' % (SERVICE, faaid)
             print ('Network: %s Downloading: %s [%s]' % (network, sitename, faaid))
