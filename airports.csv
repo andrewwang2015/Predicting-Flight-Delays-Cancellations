@@ -136,7 +136,7 @@ GST,Gustavus Airport,Gustavus,AK,USA,58.42438,-135.70738
 GTF,Great Falls International Airport,Great Falls,MT,USA,47.482,-111.37069
 GTR,Golden Triangle Regional Airport,Columbus-Starkville-West Point,MS,USA,33.45033,-88.59137
 GUC,Gunnison-Crested Butte Regional Airport,Gunnison,CO,USA,38.53396,-106.93318
-GUM,Guam International Airport,Agana,GU,USA,13.48345,-144.79598
+GUM,Guam International Airport,Agana,GU,USA,13.48345,144.79598
 HDN,Yampa Valley Airport (Yampa Valley Regional),Hayden,CO,USA,40.48118,-107.21766
 HIB,Range Regional Airport (Chisholm-Hibbing Airport),Hibbing,MN,USA,47.3866,-92.83899
 HLN,Helena Regional Airport,Helena,MT,USA,46.60682,-111.98275
@@ -170,7 +170,7 @@ JLN,Joplin Regional Airport,Joplin,MO,USA,37.15181,-94.49827
 JMS,Jamestown Regional Airport,Jamestown,ND,USA,46.92972,-98.6782
 JNU,Juneau International Airport,Juneau,AK,USA,58.35496,-134.57628
 KOA,Kona International Airport at Keahole,Kailua/Kona,HI,USA,19.73877,-156.04563
-KTN,Ketchikan International Airport,Ketchikan,AK,USA,55.35557,-131.71374
+KTN,Ketchikan International Airport,Ketchikan,AK,USA,58.35496,-134.57628
 LAN,Capital Region International Airport ( Lansing Capital City),Lansing,MI,USA,42.7787,-84.58736
 LAR,Laramie Regional Airport,Laramie,WY,USA,41.31205,-105.67499
 LAS,McCarran International Airport,Las Vegas,NV,USA,36.08036,-115.15233
@@ -245,7 +245,7 @@ PIH,Pocatello Regional Airport,Pocatello,ID,USA,42.91131,-112.59586
 PIT,Pittsburgh International Airport,Pittsburgh,PA,USA,40.49147,-80.23287
 PLN,Pellston Regional Airport of Emmet County,Pellston,MI,USA,45.57093,-84.79672
 PNS,Pensacola International Airport (Pensacola Gulf Coast Regional Airport),Pensacola,FL,USA,30.47331,-87.18744
-PPG,Pago Pago International Airport (Tafuna Airport),Pago Pago,AS,USA,14.33102,-170.71053
+PPG,Pago Pago International Airport (Tafuna Airport),Pago Pago,AS,USA,-14.3313,-170.727
 PSC,Tri-Cities Airport,Pasco,WA,USA,46.26468,-119.11903
 PSE,Mercedita Airport,Ponce,PR,USA,18.0083,-66.56301
 PSG,Petersburg James A. Johnson Airport,Petersburg,AK,USA,56.80165,-132.94528
@@ -294,7 +294,7 @@ SPS,Wichita Falls Municipal Airport/Sheppard AFB,Wichita Falls,TX,USA,33.9888,-9
 SRQ,Sarasota-Bradenton International Airport,Sarasota,FL,USA,27.39533,-82.55411
 STC,St. Cloud Regional Airport,St Cloud,MN,USA,45.54532,-94.05834
 STL,St. Louis International Airport at Lambert Field,St Louis,MO,USA,38.74769,-90.35999
-STT,Cyril E. King Airport,Charlotte Amalie,VI,USA,18.33731,-64.97336
+STT,Cyril E. King Airport,Charlotte Amalie,VI,USA,17.70189,-64.79856
 STX,Henry E. Rohlsen Airport,Christiansted,VI,USA,17.70189,-64.79856
 SUN,Friedman Memorial Airport,Hailey,ID,USA,43.50484,-114.29659
 SUX,Sioux Gateway Airport,Sioux City,IA,USA,42.4026,-96.38437
