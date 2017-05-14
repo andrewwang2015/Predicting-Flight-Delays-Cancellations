@@ -17,7 +17,7 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import GridSearchCV
 
 def main():
-	flights = pd.read_csv('BigData_Pruned_Drop_Delays.csv')
+	flights = pd.read_csv('RegressingOnlyDelays.csv')
 	print("Loaded in all data...")
 
 	orig_airports = flights['ORIGIN_AIRPORT'].tolist()
@@ -61,15 +61,18 @@ def main():
 	X = flights[features]
 	y = flights["ARRIVAL_DELAY"]
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
+	assert(len(X_train) != len(X_test))
+	assert(len(X_train) == len(y_train))
 	print("Split inputs into training and testing ...")
 	trainErrors = []
 	testErrors = []
 
-	for v in [0.00001, 0.0001, 0.001, 0.01, 1, 10]:
-		reg = DecisionTreeRegressor() #min_impurity_split=v)
+	for v in [0.0000001, 0.000001, 0.00001, 0.0001]:
+		reg = DecisionTreeRegressor(min_samples_split = v) #min_impurity_split=v)
 		reg.fit(X_train, y_train)
 		y_pred_train = reg.predict(X_train)
 		y_pred_test  = reg.predict(X_test)
+		assert(len(y_pred_train) != len(y_pred_test))
 		print((v, mean_absolute_error(y_train, y_pred_train)), (v, mean_absolute_error(y_test, y_pred_test)))
 		trainErrors.append((v, mean_absolute_error(y_train, y_pred_train)))
 		testErrors.append((v, mean_absolute_error(y_test, y_pred_test)))

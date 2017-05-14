@@ -4,7 +4,7 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 #import seaborn as sns
 from sklearn import preprocessing
 #import h5py
-from sqlalchemy import create_engine
+#from sqlalchemy import create_engine
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeRegressor
@@ -14,8 +14,10 @@ from sklearn.metrics import mean_absolute_error
 #from sklearn.ensemble import ExtraTreesClassifier
 #from sklearn.feature_selection import SelectKBest
 #from sklearn.feature_selection import chi2
-from sklearn.model_selection import GridSearchCV
-
+#from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from sklearn import linear_model
+from sklearn.ensemble import GradientBoostingRegressor
 def main():
 	flights = pd.read_csv('BigData_Pruned_Drop_Delays.csv')
 	print("Loaded in all data...")
@@ -61,19 +63,21 @@ def main():
 	X = flights[features]
 	y = flights["ARRIVAL_DELAY"]
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
+
 	print("Split inputs into training and testing ...")
 	trainErrors = []
 	testErrors = []
 
-	for v in [0.00001, 0.0001, 0.001, 0.01, 1, 10]:
-		reg = DecisionTreeRegressor() #min_impurity_split=v)
-		reg.fit(X_train, y_train)
-		y_pred_train = reg.predict(X_train)
-		y_pred_test  = reg.predict(X_test)
+	for v in range(1):
+		clf = linear_model.SGDRegressor()
+		clf.fit(X, y)
+		y_pred_train = clf.predict(X_train)
+		y_pred_test  = clf.predict(X_test)
+		
 		print((v, mean_absolute_error(y_train, y_pred_train)), (v, mean_absolute_error(y_test, y_pred_test)))
 		trainErrors.append((v, mean_absolute_error(y_train, y_pred_train)))
 		testErrors.append((v, mean_absolute_error(y_test, y_pred_test)))
-		
+	
 
 	print('Training Errors:', trainErrors)
 	print('Test Errors:', testErrors)
